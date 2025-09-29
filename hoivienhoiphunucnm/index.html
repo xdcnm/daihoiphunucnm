@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hội viên hội phụ nữ Công ty Xây dựng Công nghiệp mỏ #id</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: #d8afcf; /* màu nền */
+    }
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+  </style>
+</head>
+<body>
+  <img id="viewer" src="" alt="Ảnh hiển thị" />
+
+  <script>
+    // Danh sách 36 ảnh
+    const images = [
+      "https://dl.dropbox.com/scl/fi/fz0dqti3jcafw8yaf31le/1.jpg?rlkey=y29qwastjqfx2fqy3vynmx23i&st=i6oev5q9&dl=0",
+      "https://dl.dropbox.com/scl/fi/bgj4wgdtq8ibvcs6gbb75/2.jpg?rlkey=0v493uzr433tfarw63g1nkxsz&st=a2iwj19x&dl=0",
+
+    ];
+
+    function showImageFromHash() {
+      const hash = window.location.hash.substring(1); // lấy phần sau dấu #
+      const index = parseInt(hash, 10);
+      const img = document.getElementById("viewer");
+      if (!isNaN(index) && index >= 1 && index <= images.length) {
+        img.src = images[index - 1]; // ảnh số 1 → mảng [0]
+      } else {
+        img.src = "";
+        img.alt = "Không tìm thấy ảnh";
+      }
+    }
+
+    // Hiển thị ngay khi load
+    showImageFromHash();
+
+    // Nếu đổi hash (bấm link khác), ảnh sẽ đổi theo
+    window.addEventListener("hashchange", showImageFromHash);
+  </script>
+</body>
+</html>
